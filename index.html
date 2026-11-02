@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#263f32">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Rooted Becoming</title>
+<style>
+:root {
+  --forest:#263f32; --sage:#82947a; --ivory:#f5f0e5; --paper:#fffdf7;
+  --clay:#a96f4d; --gold:#c5a66b; --ink:#26352d; --muted:#6d786d; --line:#e5dfd1;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ivory);color:var(--ink);font:16px/1.5 system-ui,sans-serif}
+header{background:var(--forest);color:white;padding:16px;padding-top:calc(16px + env(safe-area-inset-top,0px));position:sticky;top:0;z-index:10}
+.top{max-width:950px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.brand{display:flex;align-items:center;gap:10px}
+.mark{width:42px;height:42px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:#ead9ae;font-size:24px}
+.brandname{font:22px Georgia,serif}
+.tag{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#d9dfd2}
+button{border:0;border-radius:30px;padding:10px 15px;background:var(--forest);color:white;cursor:pointer;font:inherit}
+header button{background:#ffffff22}
+button.alt{background:#e8ecdf;color:var(--forest)}
+button.small-btn{padding:6px 11px;font-size:13px}
+button.x{background:transparent;color:var(--muted);padding:2px 8px;font-size:18px}
+main{max-width:950px;margin:22px auto;padding:0 15px 60px}
+.hero{background:linear-gradient(135deg,#e7eadf,#f8f2e5);border:1px solid #d9dfd0;border-radius:23px;padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:15px;align-items:center}
+.eyebrow{color:var(--clay);font-size:11px;font-weight:bold;letter-spacing:1.8px;text-transform:uppercase}
+h1,h2,h3{font-family:Georgia,serif;color:var(--forest);font-weight:500;line-height:1.15}
+h1{font-size:42px}h2{font-size:27px}
+p{color:#59665b}
+.tree{width:100%;max-width:250px;margin:auto}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:15px}
+.pillar{background:#ffffffaa;border:1px solid #d9dfd0;border-radius:13px;padding:10px;font-size:12px}
+.pillar b{display:block;color:var(--forest)}
+.tabs{display:flex;gap:8px;overflow:auto;padding:17px 0}
+.tab{background:transparent;color:var(--muted);border:1px solid var(--line);white-space:nowrap}
+.tab.active{background:var(--forest);color:white}
+.panel{display:none}.panel.active{display:block}
+.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:13px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:17px;padding:17px;margin-bottom:13px}
+.small{color:var(--muted);font-size:13px}
+.mission{display:flex;align-items:flex-start;gap:10px;padding:11px 0;border-top:1px solid var(--line)}
+.mission input{margin-top:4px}
+.mission.done .task{text-decoration:line-through;opacity:.55}
+.xp{color:var(--clay);font-weight:bold;font-size:13px}
+input[type=text],textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:11px;background:#fffdf9;font:inherit;margin-bottom:8px}
+textarea{min-height:110px}
+.progress{height:9px;background:#e9e6dc;border-radius:20px;overflow:hidden;margin:10px 0}
+.progress span{display:block;height:100%;background:var(--sage);width:0%;transition:width .3s}
+.stats{display:flex;gap:9px}
+.stat{flex:1;padding:11px;background:#f0f2e9;border-radius:12px}
+.stat strong{display:block;font-size:22px;color:var(--forest)}
+.interest{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--line);border-radius:25px;padding:8px 11px;margin:4px;background:#fffdf7;font-size:13px}
+.lesson{border-left:3px solid var(--gold);padding:9px 12px;background:#faf7ef}
+.idea{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-top:1px solid var(--line)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+footer{text-align:center;color:var(--muted);padding:22px;font-size:12px}
+@media(max-width:700px){
+  .hero,.grid{grid-template-columns:1fr}
+  .tree{max-width:180px}
+  .pillars{grid-template-columns:1fr}
+  h1{font-size:34px}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="top">
+  <div class="brand">
+    <div class="mark">✧</div>
+    <div>
+      <div class="brandname">Rooted Becoming</div>
+      <div class="tag">A life worth growing into</div>
+    </div>
+  </div>
+  <div class="row">
+    <button id="installBtn" hidden>Install</button>
+    <button onclick="showTab('you')">My Space</button>
+  </div>
+</div>
+</header>
+
+<main>
+
+<section class="hero">
+<div>
+  <div class="eyebrow">Your fresh beginning starts here</div>
+  <h1>Become rooted.<br>Become radiant.</h1>
+  <p>You are not here to spend your life inside an app. You are here to build a life you feel steady in, connected to, and excited to grow.</p>
+  <button onclick="showTab('today')">Take my next step</button>
+  <div class="pillars">
+    <div class="pillar"><b>🌱 Inner Roots</b>Self-trust, healing, identity</div>
+    <div class="pillar"><b>🌿 Earth Roots</b>Nature, plants, earth wisdom</div>
+    <div class="pillar"><b>📜 Ancient Roots</b>History, traditions, big questions</div>
+  </div>
+</div>
+
+<svg class="tree" viewBox="0 0 260 245" aria-hidden="true">
+<circle cx="130" cy="112" r="100" fill="#f5f0e5"/>
+<path d="M130 191 C125 158 137 130 130 95 C126 72 111 58 98 45 M131 111 C151 91 158 70 161 49 M129 137 C105 118 82 112 62 92 M132 145 C154 126 178 117 198 97" fill="none" stroke="#76583f" stroke-width="7" stroke-linecap="round"/>
+<path d="M130 190 C119 207 101 211 85 224 M130 190 C136 211 153 218 172 229 M126 193 C115 215 116 225 116 236 M135 193 C147 208 145 222 145 237 M129 192 C128 213 130 222 130 239" fill="none" stroke="#76583f" stroke-width="4" stroke-linecap="round"/>
+<g fill="#82947a" stroke="#526c55" stroke-width="1.5">
+<circle cx="96" cy="48" r="24"/><circle cx="72" cy="88" r="23"/><circle cx="119" cy="61" r="25"/>
+<circle cx="161" cy="49" r="25"/><circle cx="190" cy="87" r="24"/><circle cx="151" cy="85" r="25"/>
+<circle cx="111" cy="104" r="22"/><circle cx="174" cy="119" r="22"/>
+</g>
+</svg>
+</section>
+
+<nav class="tabs">
+<button class="tab active" data-tab="today" onclick="showTab('today')">Today</button>
+<button class="tab" data-tab="discover" onclick="showTab('discover')">Discover &amp; Learn</button>
+<button class="tab" data-tab="reflect" onclick="showTab('reflect')">Reflect</button>
+<button class="tab" data-tab="you" onclick="showTab('you')">My Becoming</button>
+</nav>
+
+<section id="today" class="panel active">
+<div class="grid">
+<div class="card">
+<div class="eyebrow">One day at a time</div>
+<h2>Your next meaningful steps</h2>
+<p class="small">Small actions count. Choose progress that belongs in your real life.</p>
+<div id="missions"></div>
+<input id="newTask" type="text" placeholder="Add a step that matters to you">
+<button onclick="addTask()">Add Step</button>
+<p class="small">No streak pressure. Miss a day? Your roots are still here.</p>
+</div>
+
+<div>
+<div class="card">
+<div class="eyebrow">Your Growth Garden</div>
+<h2 id="level">Seedling</h2>
+<p>Every real-world step helps your garden grow.</p>
+<div class="progress"><span id="bar"></span></div>
+<div class="stats">
+<div class="stat"><strong id="xp">0</strong><span class="small">Growth points</span></div>
+<div class="stat"><strong id="done">0</strong><span class="small">Steps completed</span></div>
+</div>
+</div>
+
+<div class="card">
+<div class="eyebrow">A gentle nudge</div>
+<h3>Put the phone down. Meet your life.</h3>
+<p>Step outside, water a plant, make something, stretch, or have a real conversation.</p>
+<button class="alt" onclick="offline()">I did something offline</button>
+<p id="offlineMsg" class="small"></p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="discover" class="panel">
+<div class="card">
+<div class="eyebrow">Curiosity is a root system</div>
+<h2>Discover &amp; Learn</h2>
+<p>Choose what genuinely calls to you. Learning should open doors in the world, not keep you scrolling.</p>
+<div id="interestList">
+<label class="interest"><input type="checkbox" value="Herbalism">🌿 Herbalism &amp; Plant Wisdom</label>
+<label class="interest"><input type="checkbox" value="Ancient Civilizations">🏺 Ancient Civilizations</label>
+<label class="interest"><input type="checkbox" value="Spirituality">✨ Spirituality &amp; Inner Exploration</label>
+<label class="interest"><input type="checkbox" value="Biblical Studies">📜 Biblical Studies &amp; Religion</label>
+<label class="interest"><input type="checkbox" value="Psychology">🧠 Psychology &amp; Human Behavior</label>
+<label class="interest"><input type="checkbox" value="Nature">🌎 Nature &amp; Earth Sciences</label>
+<label class="interest"><input type="checkbox" value="Creative Skills">🧶 Creative &amp; Practical Skills</label>
+<label class="interest"><input type="checkbox" value="Life Skills">🧭 Life Skills &amp; Independence</label>
+</div>
+<button onclick="saveInterests()">Save My Interests</button>
+<p id="interestMsg" class="small"></p>
+</div>
+
+<div class="grid">
+<div class="card">
+<div class="eyebrow">A tiny lesson for today</div>
+<h3>Learn one plant, then meet it outdoors</h3>
+<div class="lesson">
+<b>Desert Marigold</b>
+<p><i>Baileya multiradiata</i> is a yellow wildflower native to arid regions of the southwestern United States. It is adapted to dry conditions and often blooms after seasonal rains.</p>
+</div>
+<p class="small">Observe its flowers, leaves, habitat and season. Never use an app lesson alone to identify a wild plant for eating or medicinal use.</p>
+</div>
+
+<div class="card">
+<div class="eyebrow">Build Your Own Path</div>
+<h3>What do you want to learn?</h3>
+<input id="path" type="text" placeholder="Example: Identify 15 desert plants">
+<button onclick="makePath()">Save Learning Idea</button>
+<p id="pathMsg" class="small"></p>
+<div id="pathList"></div>
+</div>
+</div>
+</section>
+
+<section id="reflect" class="panel">
+<div class="card">
+<div class="eyebrow">A moment with yourself</div>
+<h2>Today's Reflection</h2>
+<p>What is one thing you did today that supports the life you're building?</p>
+<textarea id="reflection" placeholder="No perfect words needed. Just tell the truth..."></textarea>
+<button onclick="saveReflection()">Save Reflection</button>
+<p id="reflectionMsg" class="small"></p>
+</div>
+
+<div class="card">
+<div class="eyebrow">Set an intention</div>
+<h3>What deserves your energy next?</h3>
+<input id="intention" type="text" placeholder="One thing I want to nurture...">
+<button onclick="saveIntention()">Set Intention</button>
+<p id="intentionMsg" class="small"></p>
+</div>
+</section>
+
+<section id="you" class="panel">
+<div class="card">
+<div class="eyebrow">Your Becoming</div>
+<h2>A life worth being rooted in.</h2>
+<p><b>ROOTED</b> means I am establishing a life worth being rooted in. A fresh start. A stronger foundation. A place in myself and in the world where I can finally take root.</p>
+<p><b>BECOMING</b> means growing into the person I want to be and intentionally creating the life I want to live.</p>
+</div>
+
+<div class="card">
+<div class="eyebrow">Our Promise</div>
+<h3>The app is a tool, not a destination.</h3>
+<p>Rooted Becoming helps people navigate life's transitions with self-awareness, practical skills, emotional resilience, meaningful learning and personal independence.</p>
+<p>We measure growth by the life you build, not the time you spend here. The goal is to need the app less as your confidence and independence grow.</p>
+</div>
+
+<div class="card">
+<div class="eyebrow">Your data, your device</div>
+<h3>Everything stays on this phone</h3>
+<p>Nothing is sent to a server. Save a backup file so you never lose your progress if you change phones or clear your browser.</p>
+<div class="row">
+<button class="alt" onclick="exportData()">Save a backup</button>
+<button class="alt" onclick="document.getElementById('importFile').click()">Restore a backup</button>
+</div>
+<input id="importFile" type="file" accept="application/json,.json" hidden>
+<p id="backupMsg" class="small"></p>
+</div>
+</section>
+
+<footer>ROOTED BECOMING · Grow from where you are</footer>
+</main>
+
+<script>
+const KEY = "rootedData";
+const defaults = () => ({
+  tasks: [
+    {text:"Do one thing that supports my stability",xp:10,done:false},
+    {text:"Give my body a little care",xp:10,done:false},
+    {text:"Learn or explore something meaningful",xp:10,done:false}
+  ],
+  xp:0, done:0, interests:[], reflection:"", intention:"", paths:[]
+});
+
+function load(){
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (saved && typeof saved === "object") return Object.assign(defaults(), saved);
+  } catch (e) {}
+  return defaults();
+}
+let data = load();
+
+function save(){
+  try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) {}
+  render();
+}
+
+function showTab(id){
+  document.querySelectorAll(".panel").forEach(p => p.classList.toggle("active", p.id === id));
+  document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.dataset.tab === id));
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function escapeHTML(s){
+  return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function render(){
+  const box = document.getElementById("missions");
+  box.innerHTML = "";
+  data.tasks.forEach((task, i) => {
+    const row = document.createElement("div");
+    row.className = "mission" + (task.done ? " done" : "");
+    row.innerHTML = `
+      <input type="checkbox" ${task.done ? "checked" : ""} aria-label="Mark step done">
+      <span class="task" style="flex:1">${escapeHTML(task.text)}</span>
+      <span class="xp">+${task.xp}</span>
+      <button class="x" aria-label="Remove step">×</button>`;
+    row.querySelector("input").onchange = e => {
+      task.done = e.target.checked;
+      if (task.done) { data.xp += task.xp; data.done++; }
+      else { data.xp = Math.max(0, data.xp - task.xp); data.done = Math.max(0, data.done - 1); }
+      save();
+    };
+    row.querySelector(".x").onclick = () => {
+      if (task.done) { data.xp = Math.max(0, data.xp - task.xp); data.done = Math.max(0, data.done - 1); }
+      data.tasks.splice(i, 1);
+      save();
+    };
+    box.appendChild(row);
+  });
+
+  document.getElementById("xp").textContent = data.xp;
+  document.getElementById("done").textContent = data.done;
+  document.getElementById("level").textContent = data.xp >= 200 ? "Sapling" : data.xp >= 80 ? "Taking Root" : "Seedling";
+  document.getElementById("bar").style.width = (data.xp % 80) / 80 * 100 + "%";
+
+  document.querySelectorAll("#interestList input").forEach(c => { c.checked = data.interests.includes(c.value); });
+
+  const ta = document.getElementById("reflection");
+  if (document.activeElement !== ta) ta.value = data.reflection;
+  const it = document.getElementById("intention");
+  if (document.activeElement !== it) it.value = data.intention;
+
+  const list = document.getElementById("pathList");
+  list.innerHTML = "";
+  data.paths.forEach((p, i) => {
+    const d = document.createElement("div");
+    d.className = "idea";
+    d.innerHTML = `<span>${escapeHTML(p)}</span><button class="x" aria-label="Remove idea">×</button>`;
+    d.querySelector("button").onclick = () => { data.paths.splice(i, 1); save(); };
+    list.appendChild(d);
+  });
+}
+
+function addTask(){
+  const el = document.getElementById("newTask");
+  const v = el.value.trim();
+  if (!v) return;
+  data.tasks.push({text:v, xp:10, done:false});
+  el.value = "";
+  save();
+}
+
+function offline(){
+  data.xp += 5;
+  document.getElementById("offlineMsg").textContent = "You chose your actual life. +5 growth points.";
+  save();
+}
+
+function saveInterests(){
+  data.interests = [...document.querySelectorAll("#interestList input:checked")].map(x => x.value);
+  document.getElementById("interestMsg").textContent = data.interests.length + " interests saved.";
+  save();
+}
+
+function makePath(){
+  const el = document.getElementById("path");
+  const v = el.value.trim();
+  if (!v) return;
+  data.paths.push(v);
+  document.getElementById("pathMsg").textContent = "Your learning idea has been saved.";
+  el.value = "";
+  save();
+}
+
+function saveReflection(){
+  data.reflection = document.getElementById("reflection").value;
+  document.getElementById("reflectionMsg").textContent = "Saved on this device.";
+  save();
+}
+
+function saveIntention(){
+  data.intention = document.getElementById("intention").value;
+  document.getElementById("intentionMsg").textContent = "Your intention is set.";
+  save();
+}
+
+/* Backup and restore: your data stays yours */
+function exportData(){
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "rooted-becoming-backup.json";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  document.getElementById("backupMsg").textContent = "Backup saved to your Downloads.";
+}
+
+document.getElementById("importFile").addEventListener("change", e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const parsed = JSON.parse(reader.result);
+      if (!parsed || !Array.isArray(parsed.tasks)) throw new Error("bad file");
+      data = Object.assign(defaults(), parsed);
+      save();
+      document.getElementById("backupMsg").textContent = "Backup restored.";
+    } catch (err) {
+      document.getElementById("backupMsg").textContent = "That file doesn't look like a Rooted Becoming backup.";
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = "";
+});
+
+/* Install button (Android Chrome) */
+let installEvent = null;
+window.addEventListener("beforeinstallprompt", e => {
+  e.preventDefault();
+  installEvent = e;
+  document.getElementById("installBtn").hidden = false;
+});
+document.getElementById("installBtn").onclick = async () => {
+  if (!installEvent) return;
+  installEvent.prompt();
+  await installEvent.userChoice;
+  installEvent = null;
+  document.getElementById("installBtn").hidden = true;
+};
+window.addEventListener("appinstalled", () => { document.getElementById("installBtn").hidden = true; });
+
+/* Offline support */
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => { navigator.serviceWorker.register("./sw.js").catch(() => {}); });
+}
+
+render();
+</script>
+</body>
+</html>
